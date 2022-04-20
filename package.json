@@ -1,0 +1,27 @@
+{
+  "name": "clients.drcg-properties",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "prebuild": "rm -rf ./build && rm -rf ./dist",
+    "build": "next build ./src && next export -o dist ./src",
+    "dev": "next ./src",
+    "deploy:beta": "aws s3 sync ./dist s3://beta.eandbsolutions.com --delete",
+    "deploy:prod": "aws s3 sync ./dist s3://eandbsolutions.com --delete",
+    "lint": "eslint \"./**/*.{js,jsx}\"",
+    "gen:comp": "node ./node_modules/@ebsolutions/generate-react-templates --type=COMP",
+    "gen:cont": "node ./node_modules/@ebsolutions/generate-react-templates --type=CONT",
+    "gen:page": "node ./node_modules/@ebsolutions/generate-react-templates --type=PAGE"
+  },
+  "dependencies": {
+    "next": "12.1.5",
+    "react": "18.0.0",
+    "react-dom": "18.0.0",
+    "sass": "^1.50.1"
+  },
+  "devDependencies": {
+    "@ebsolutions/generate-react-templates": "^1.7.0",
+    "eslint": "8.13.0",
+    "eslint-config-next": "12.1.5"
+  }
+}
