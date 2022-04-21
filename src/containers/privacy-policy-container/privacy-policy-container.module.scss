@@ -1,0 +1,40 @@
+@import "../../styles/variables";
+@import "../../styles/mixins";
+
+//Small screens - MOBILE
+@media only screen {
+  .privacyPolicyContainer {
+    padding: $MEDIUM;
+    &__title {
+      @include font-type($MAIN_FONT, $MIDLARGE, 600);
+
+      margin-bottom: $MEDIUM;
+    }
+    &__policyHeading {
+      @include font-type($MAIN_FONT, $MEDIUM, 600);
+
+      margin-bottom: $XSMALL;
+    }
+    &__policyText {
+      @include font-type($SEC_FONT, $MEDIUM);
+
+      margin-bottom: $MEDIUM;
+    }
+  }
+}
+
+//Medium screens - TABLET
+@media only screen and (min-width: $MEDIUM_SCREEN) {
+}
+
+//Large screens - DESKTOP
+@media only screen and (min-width: $LARGE_SCREEN) {
+}
+
+//XLarge screens
+@media only screen and (min-width: $XLARGE_SCREEN) {
+}
+
+//XXLarge screens
+@media only screen and (min-width: $XXLARGE_SCREEN) {
+}
