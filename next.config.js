@@ -1,4 +1,9 @@
 /** @type {import('next').NextConfig} */
+const withTM = require("next-transpile-modules")([
+  "@square/web-sdk",
+  "react-square-web-payments-sdk",
+]);
+
 const nextConfig = {
   distDir: "../build",
   reactStrictMode: true,
@@ -13,6 +18,10 @@ const nextConfig = {
       "drcgproperties.com",
     ],
   },
+  experimental: {
+    esmExternals: "loose",
+  },
 };
 
-module.exports = nextConfig;
+module.exports = withTM({ ...nextConfig });
+// module.exports = nextConfig;

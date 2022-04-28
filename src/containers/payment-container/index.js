@@ -1,1 +1,1 @@
-export { default } from "./payment-container";
+export { PaymentContainer } from "./payment-container";
