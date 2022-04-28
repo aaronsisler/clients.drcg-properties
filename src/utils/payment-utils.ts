@@ -1,0 +1,25 @@
+import axios from "axios";
+
+import {
+  SERVICES_GATEWAY_URL,
+  PAYMENT_CONFIG_TOKEN_CLIENT_NAME,
+} from "../config";
+import { CustomerInfo } from "../models/customer";
+
+interface PaymentPayload {
+  sourceId: string;
+  amount: number;
+  customerInfo: CustomerInfo;
+  note: string;
+}
+
+const headers = {
+  "Content-Type": "application/json",
+  "X-Access-Token-Client": PAYMENT_CONFIG_TOKEN_CLIENT_NAME,
+};
+
+const options = { headers };
+
+export const submitPayment = async (paymentPayload: PaymentPayload) => {
+  await axios.post(`${SERVICES_GATEWAY_URL}/payment`, paymentPayload, options);
+};

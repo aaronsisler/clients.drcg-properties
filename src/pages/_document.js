@@ -12,11 +12,11 @@ class MyDocument extends Document {
     return (
       <Html lang="en-US">
         <Head>
-          <link
+          {/* <link
             rel="icon"
             type="image/x-icon"
             href={`${CDN_URL}/favicon.ico`}
-          />
+          /> */}
         </Head>
         <body>
           <Main />
