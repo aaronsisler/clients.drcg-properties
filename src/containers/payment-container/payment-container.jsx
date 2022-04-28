@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import axios from "axios";
 
 import { CustomerForm } from "../../components/customer-form";
@@ -33,30 +33,39 @@ const customerInfo = {
   address,
 };
 
-const note = "SPECIFIC_DROP_DOWN_TYPE_1";
-
-const handlePaymentApiRequest = async (token) => {
+const handlePaymentApiRequest = async (
+  token,
+  paymentType,
+  paymentAmount = 456
+) => {
   try {
-    return await axios.post(
-      `${SERVICES_GATEWAY_URL}/payment`,
-      {
-        sourceId: token.token,
-        amount: 456,
-        customerInfo,
-        note,
-      },
-      options
-    );
+    console.log(token);
+    console.log(paymentType);
+    console.log(paymentAmount);
+    // return await axios.post(
+    //   `${SERVICES_GATEWAY_URL}/payment`,
+    //   {
+    //     sourceId: token.token,
+    //     amount: paymentAmount,
+    //     customerInfo,
+    //     note: paymentType,
+    //   },
+    //   options
+    // );
   } catch (e) {
     console.log(e);
   }
 };
 
-const PaymentContainer = () => (
-  <div className={styles.paymentContainer}>
-    <CustomerForm />
-    <PaymentForm handlePayment={handlePaymentApiRequest} />
-  </div>
-);
+const PaymentContainer = () => {
+  const [customerInfo, setCustomerInfo] = useState({});
+
+  return (
+    <div className={styles.paymentContainer}>
+      <CustomerForm />
+      <PaymentForm handleSubmitPayment={handlePaymentApiRequest} />
+    </div>
+  );
+};
 
 export { PaymentContainer };
