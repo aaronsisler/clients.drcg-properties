@@ -4,12 +4,12 @@ import {
   SERVICES_GATEWAY_URL,
   PAYMENT_CONFIG_TOKEN_CLIENT_NAME,
 } from "../config";
-import { CustomerInfo } from "../models/customer";
+import { Customer } from "../models/customer";
 
 interface PaymentPayload {
   sourceId: string;
   amount: number;
-  customerInfo: CustomerInfo;
+  customerInfo: Customer;
   note: string;
 }
 

@@ -3,23 +3,24 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import type { AppState } from "./store";
 
 export interface CustomerState {
-  givenName: string;
+  firstName: string;
 }
 
 const initialState: CustomerState = {
-  givenName: "",
+  firstName: "",
 };
 
 const address = {
   addressLine1: "123 Main Street",
-  locality: "Holly Springs",
-  administrativeDistrictLevel1: "NC",
+  addressLine2: "Suite 456",
+  city: "Holly Springs",
+  state: "NC",
   postalCode: "27540",
 };
 
 const customerInfo = {
-  givenName: "Johnny",
-  familyName: "Appleseed",
+  firstName: "Johnny",
+  lastName: "Appleseed",
   companyName: "Place on the third floor",
   emailAddress: "my.email.address@gmail.com",
   phoneNumber: "910-603-0099",
@@ -30,14 +31,14 @@ export const customerSlice = createSlice({
   name: "customer",
   initialState,
   reducers: {
-    setGivenName: (state, action: PayloadAction<string>) => {
-      state.givenName = action.payload;
+    setFirstName: (state, action: PayloadAction<string>) => {
+      state.firstName = action.payload;
     },
   },
 });
 
-export const { setGivenName } = customerSlice.actions;
+export const { setFirstName } = customerSlice.actions;
 
-export const selectGivenName = (state: AppState) => state.customer.givenName;
+export const selectFirstName = (state: AppState) => state.customer.firstName;
 
 export default customerSlice.reducer;
