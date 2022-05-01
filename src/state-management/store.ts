@@ -3,10 +3,15 @@ import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 
 import customerReducer from "./customer-slice";
 import paymentReducer from "./payment-slice";
+import workflowReducer from "./workflow-slice";
 
 export function makeStore() {
   return configureStore({
-    reducer: { customer: customerReducer, payment: paymentReducer },
+    reducer: {
+      customer: customerReducer,
+      payment: paymentReducer,
+      workflow: workflowReducer,
+    },
   });
 }
 

@@ -14,6 +14,9 @@
     &__title {
       @include font-type($MAIN_FONT, $MIDLARGE);
     }
+    &__messageError {
+      color: red;
+    }
     &__section {
       display: grid;
       &Names {

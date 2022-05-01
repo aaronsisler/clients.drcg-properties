@@ -2,6 +2,7 @@ import React from "react";
 import {
   CreditCardInput,
   SquarePaymentsForm,
+  PayButton,
 } from "react-square-web-payments-sdk";
 
 import FormControl from "@mui/material/FormControl";
@@ -76,9 +77,11 @@ const PaymentForm = () => {
       <SquarePaymentsForm
         applicationId={PAYMENT_CONFIG_APP_ID}
         locationId={PAYMENT_CONFIG_LOCATION_ID}
-        cardTokenizeResponseReceived={async ({ token }) =>
-          dispatch(submitPaymentAsync(token))
-        }
+        cardTokenizeResponseReceived={async ({ token }) => {
+          if (token) {
+            dispatch(submitPaymentAsync(token));
+          }
+        }}
       >
         <CreditCardInput />
       </SquarePaymentsForm>
