@@ -38,11 +38,13 @@ const CustomerContactInfo = () => {
       >
         <TextField
           label="First Name"
+          name="given-name"
           value={firstName}
           onChange={(e) => dispatch(setFirstName(e.target.value))}
         />
         <TextField
           label="Last Name"
+          name="family-name"
           value={lastName}
           onChange={(e) => dispatch(setLastName(e.target.value))}
         />
@@ -50,6 +52,7 @@ const CustomerContactInfo = () => {
       <div className={cn(styles.customerContactInfo__section)}>
         <TextField
           label="Company Name"
+          name="organization"
           value={companyName}
           onChange={(e) => dispatch(setCompanyName(e.target.value))}
         />
@@ -62,11 +65,13 @@ const CustomerContactInfo = () => {
       >
         <TextField
           label="Email Address"
+          name="email"
           value={emailAddress}
           onChange={(e) => dispatch(setEmailAddress(e.target.value))}
         />
         <TextField
           label="Phone Number"
+          name="tel"
           value={phoneNumber}
           onChange={(e) => dispatch(setPhoneNumber(e.target.value))}
         />

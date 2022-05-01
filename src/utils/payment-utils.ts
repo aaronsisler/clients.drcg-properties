@@ -23,3 +23,17 @@ const options = { headers };
 export const submitPayment = async (paymentPayload: PaymentPayload) => {
   await axios.post(`${SERVICES_GATEWAY_URL}/payment`, paymentPayload, options);
 };
+
+export const formatPaymentAmount = (amount: string): string => {
+  const containsDecimal = amount.includes(".");
+  let returnValue;
+  if (containsDecimal) {
+    returnValue = amount.replace(".", "");
+    console.log(returnValue);
+    return returnValue;
+  }
+
+  returnValue = amount.concat("00");
+  console.log(returnValue);
+  return returnValue;
+};

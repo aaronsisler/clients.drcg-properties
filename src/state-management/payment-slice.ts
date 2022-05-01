@@ -1,10 +1,10 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 import type { AppState } from "./store";
-import { submitPayment } from "../utils/payment-utils";
+import { formatPaymentAmount, submitPayment } from "../utils/payment-utils";
 
 export interface PaymentState {
-  amount: number | string;
+  amount: string;
   paymentType: string;
 }
 
@@ -18,7 +18,9 @@ export const submitPaymentAsync = createAsyncThunk(
   async (token: string, { getState }: any) => {
     const appState: AppState = getState();
     const { customer, payment } = appState;
-    const { amount, paymentType } = payment;
+    const { amount: rawAmount, paymentType } = payment;
+
+    const amount = formatPaymentAmount(rawAmount);
 
     return await submitPayment({
       sourceId: token,
@@ -33,7 +35,7 @@ export const paymentSlice = createSlice({
   name: "payment",
   initialState,
   reducers: {
-    setAmount: (state, action: PayloadAction<number>) => {
+    setAmount: (state, action: PayloadAction<string>) => {
       state.amount = action.payload;
     },
     setPaymentType: (state, action: PayloadAction<string>) => {
