@@ -3,6 +3,23 @@
 
 //Small screens - MOBILE
 @media only screen {
+  .customerAddressInfo {
+    display: grid;
+    gap: $SMALL;
+    label,
+    input {
+      @include font-type($MAIN_FONT, $MEDIUM);
+      min-height: 100%;
+    }
+    &__title {
+      @include font-type($MAIN_FONT, $MIDLARGE);
+    }
+    &__section {
+      display: grid;
+      gap: $SMALL;
+      grid-template-columns: 3fr 1fr 2fr;
+    }
+  }
 }
 
 //Medium screens - TABLET

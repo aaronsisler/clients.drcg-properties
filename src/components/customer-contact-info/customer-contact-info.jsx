@@ -1,5 +1,6 @@
 import React from "react";
 import TextField from "@mui/material/TextField";
+import cn from "classnames";
 
 import {
   selectFirstName,
@@ -27,32 +28,49 @@ const CustomerContactInfo = () => {
   const phoneNumber = useAppSelector(selectPhoneNumber);
 
   return (
-    <div>
-      <TextField
-        label="First Name"
-        value={firstName}
-        onChange={(e) => dispatch(setFirstName(e.target.value))}
-      />
-      <TextField
-        label="Last Name"
-        value={lastName}
-        onChange={(e) => dispatch(setLastName(e.target.value))}
-      />
-      <TextField
-        label="Company Name"
-        value={companyName}
-        onChange={(e) => dispatch(setCompanyName(e.target.value))}
-      />
-      <TextField
-        label="Email Address"
-        value={emailAddress}
-        onChange={(e) => dispatch(setEmailAddress(e.target.value))}
-      />
-      <TextField
-        label="Phone Number"
-        value={phoneNumber}
-        onChange={(e) => dispatch(setPhoneNumber(e.target.value))}
-      />
+    <div className={styles.customerContactInfo}>
+      <h2 className={styles.customerContactInfo__title}>Contact Information</h2>
+      <div
+        className={cn(
+          styles.customerContactInfo__section,
+          styles.customerContactInfo__sectionNames
+        )}
+      >
+        <TextField
+          label="First Name"
+          value={firstName}
+          onChange={(e) => dispatch(setFirstName(e.target.value))}
+        />
+        <TextField
+          label="Last Name"
+          value={lastName}
+          onChange={(e) => dispatch(setLastName(e.target.value))}
+        />
+      </div>
+      <div className={cn(styles.customerContactInfo__section)}>
+        <TextField
+          label="Company Name"
+          value={companyName}
+          onChange={(e) => dispatch(setCompanyName(e.target.value))}
+        />
+      </div>
+      <div
+        className={cn(
+          styles.customerContactInfo__section,
+          styles.customerContactInfo__sectionContact
+        )}
+      >
+        <TextField
+          label="Email Address"
+          value={emailAddress}
+          onChange={(e) => dispatch(setEmailAddress(e.target.value))}
+        />
+        <TextField
+          label="Phone Number"
+          value={phoneNumber}
+          onChange={(e) => dispatch(setPhoneNumber(e.target.value))}
+        />
+      </div>
     </div>
   );
 };

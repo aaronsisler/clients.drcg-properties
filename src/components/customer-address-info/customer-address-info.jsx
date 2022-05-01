@@ -1,5 +1,6 @@
 import React from "react";
 import TextField from "@mui/material/TextField";
+import cn from "classnames";
 
 import {
   selectAddressLine1,
@@ -27,7 +28,8 @@ const CustomerAddressInfo = () => {
   const postalCode = useAppSelector(selectPostalCode);
 
   return (
-    <div>
+    <div className={styles.customerAddressInfo}>
+      <h2 className={styles.customerAddressInfo__title}>Address</h2>
       <TextField
         label="Address Line 1"
         value={addressLine1}
@@ -38,21 +40,23 @@ const CustomerAddressInfo = () => {
         value={addressLine2}
         onChange={(e) => dispatch(setAddressLine2(e.target.value))}
       />
-      <TextField
-        label="City"
-        value={city}
-        onChange={(e) => dispatch(setCity(e.target.value))}
-      />
-      <TextField
-        label="State"
-        value={state}
-        onChange={(e) => dispatch(setState(e.target.value))}
-      />
-      <TextField
-        label="Postal Code"
-        value={postalCode}
-        onChange={(e) => dispatch(setPostalCode(e.target.value))}
-      />
+      <div className={cn(styles.customerAddressInfo__section)}>
+        <TextField
+          label="City"
+          value={city}
+          onChange={(e) => dispatch(setCity(e.target.value))}
+        />
+        <TextField
+          label="State"
+          value={state}
+          onChange={(e) => dispatch(setState(e.target.value))}
+        />
+        <TextField
+          label="Postal Code"
+          value={postalCode}
+          onChange={(e) => dispatch(setPostalCode(e.target.value))}
+        />
+      </div>
     </div>
   );
 };

@@ -4,16 +4,19 @@ import {
   SquarePaymentsForm,
 } from "react-square-web-payments-sdk";
 
-import TextField from "@mui/material/TextField";
+import FormControl from "@mui/material/FormControl";
+import InputAdornment from "@mui/material/InputAdornment";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
+import TextField from "@mui/material/TextField";
 
 import {
   PAYMENT_CONFIG_APP_ID,
   PAYMENT_CONFIG_LOCATION_ID,
 } from "../../config";
+
+import { paymentTypes } from "../../content/payment-types";
 
 import {
   selectAmount,
@@ -33,29 +36,41 @@ const PaymentForm = () => {
 
   return (
     <div className={styles.paymentForm}>
-      <TextField
-        label="Payment Amount"
-        type="number"
-        InputLabelProps={{
-          pattern: "[0-9]*",
-        }}
-        value={paymentAmount}
-        onChange={(e) => dispatch(setAmount(e.target.value))}
-      />
-      <FormControl fullWidth>
-        <InputLabel id="payment-type-label">Payment Type</InputLabel>
-        <Select
-          labelId="payment-type-label"
-          label="Payment Type"
-          value={paymentType}
-          onChange={(e) => dispatch(setPaymentType(e.target.value))}
-        >
-          <MenuItem value="PAYMENT_TYPE_TENANT_RENT">Tenant Rent</MenuItem>
-          <MenuItem value="PAYMENT_TYPE_FEE_LATE">Late Fee</MenuItem>
-          <MenuItem value="PAYMENT_TYPE_FEE_PARKING">Parking Fee</MenuItem>
-        </Select>
-      </FormControl>
-      <p>Has Axios</p>
+      <h2 className={styles.paymentForm__title}>Payment</h2>
+      <div className={styles.paymentForm__section}>
+        <TextField
+          className={styles.paymentForm__text}
+          label="Payment Amount"
+          type="number"
+          InputLabelProps={{
+            pattern: "[0-9]*.[0-9]{2}",
+          }}
+          InputProps={{
+            startAdornment: <InputAdornment position="start">$</InputAdornment>,
+          }}
+          value={paymentAmount}
+          onChange={(e) => dispatch(setAmount(e.target.value))}
+        />
+        <FormControl>
+          <InputLabel id="payment-type-label">Payment Type</InputLabel>
+          <Select
+            className={styles.paymentForm__select}
+            labelId="payment-type-label"
+            label="Payment Type"
+            value={paymentType}
+            onChange={(e) => dispatch(setPaymentType(e.target.value))}
+          >
+            <MenuItem disabled value="">
+              <em>Choose payment type</em>
+            </MenuItem>
+            {paymentTypes.map(({ value, text }, index) => (
+              <MenuItem key={index} value={value}>
+                {text}
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
+      </div>
       <p>Mock Card Number</p>
       <p>5105 1051 0510 5100</p>
       <SquarePaymentsForm

@@ -13,39 +13,18 @@ const initialState: PaymentState = {
   paymentType: "",
 };
 
-const address = {
-  addressLine1: "123 Main Street",
-  addressLine2: "Suite 456",
-  city: "Holly Springs",
-  state: "NC",
-  postalCode: "27540",
-};
-
-const customerInfo = {
-  firstName: "Johnny",
-  lastName: "Appleseed",
-  companyName: "Place on the third floor",
-  emailAddress: "my.email.address@gmail.com",
-  phoneNumber: "910-603-0099",
-  address,
-};
-
 export const submitPaymentAsync = createAsyncThunk(
   "payment/submitPayment",
   async (token: string, { getState }: any) => {
     const appState: AppState = getState();
     const { customer, payment } = appState;
-    const { firstName } = customer;
     const { amount, paymentType } = payment;
 
     return await submitPayment({
       sourceId: token,
       amount: Number(amount),
       note: paymentType,
-      customerInfo: {
-        ...customerInfo,
-        firstName,
-      },
+      customerInfo: customer,
     });
   }
 );

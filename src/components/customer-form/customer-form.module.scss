@@ -3,6 +3,10 @@
 
 //Small screens - MOBILE
 @media only screen {
+  .customerForm {
+    display: grid;
+    gap: $MEDIUM;
+  }
 }
 
 //Medium screens - TABLET

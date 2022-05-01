@@ -7,7 +7,7 @@ import styles from "./customer-form.module.scss";
 
 const CustomerForm = () => {
   return (
-    <div>
+    <div className={styles.customerForm}>
       <CustomerContactInfo />
       <CustomerAddressInfo />
     </div>
