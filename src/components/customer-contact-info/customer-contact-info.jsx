@@ -14,6 +14,7 @@ import {
   setEmailAddress,
   setPhoneNumber,
 } from "../../state-management/customer-slice";
+import { WorkflowButtons } from "../workflow-buttons";
 
 import { useAppDispatch, useAppSelector } from "../../state-management";
 

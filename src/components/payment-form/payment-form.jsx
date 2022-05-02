@@ -2,7 +2,6 @@ import React from "react";
 import {
   CreditCardInput,
   SquarePaymentsForm,
-  PayButton,
 } from "react-square-web-payments-sdk";
 
 import FormControl from "@mui/material/FormControl";
@@ -18,6 +17,7 @@ import {
 } from "../../config";
 
 import { paymentTypes } from "../../content/payment-types";
+import { WorkflowStep } from "../../state-management/workflow-slice";
 
 import {
   selectAmount,

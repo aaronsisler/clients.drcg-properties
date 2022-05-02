@@ -5,11 +5,14 @@ import { CustomerContactInfo } from "../customer-contact-info";
 
 import styles from "./customer-form.module.scss";
 
-const CustomerForm = () => {
+const CustomerForm = ({ previousStep, nextStep }) => {
   return (
     <div className={styles.customerForm}>
       <CustomerContactInfo />
       <CustomerAddressInfo />
+      <p>
+        <button onClick={nextStep}>Next</button>
+      </p>
     </div>
   );
 };
