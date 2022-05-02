@@ -22,12 +22,18 @@ export const submitPaymentAsync = createAsyncThunk(
 
     const amount = formatPaymentAmount(rawAmount);
 
-    return await submitPayment({
-      sourceId: token,
-      amount: Number(amount),
-      note: paymentType,
-      customerInfo: customer,
-    });
+    try {
+      await submitPayment({
+        sourceId: token,
+        amount: Number(amount),
+        note: paymentType,
+        customerInfo: customer,
+      });
+
+      return true;
+    } catch (e) {
+      return false;
+    }
   }
 );
 

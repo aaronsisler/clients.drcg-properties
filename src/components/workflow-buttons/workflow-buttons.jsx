@@ -3,28 +3,27 @@ import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
 
 import { useAppDispatch } from "../../state-management";
-import {
-  decrementCurrentStep,
-  incrementCurrentStep,
-} from "../../state-management/workflow-slice";
+import { decrementCurrentStep } from "../../state-management/workflow-slice";
 
 import styles from "./workflow-buttons.module.scss";
 
-const WorkflowButtons = ({ goToNextStep, goToPreviousStep }) => {
+const WorkflowButtons = ({ goToNextStep }) => {
   const dispatch = useAppDispatch();
-
-  const decrement = () => {
-    dispatch(decrementCurrentStep());
-  };
 
   return (
     <Stack spacing={4} direction="row" className={styles.workflowButtons}>
-      <Button variant="outlined" type="submit" onClick={goToPreviousStep}>
+      <Button
+        variant="outlined"
+        type="submit"
+        onClick={() => dispatch(decrementCurrentStep())}
+      >
         Previous
       </Button>
-      <Button variant="outlined" type="submit" onClick={goToNextStep}>
-        Next
-      </Button>
+      {goToNextStep && (
+        <Button variant="outlined" type="submit" onClick={goToNextStep}>
+          Next
+        </Button>
+      )}
     </Stack>
   );
 };

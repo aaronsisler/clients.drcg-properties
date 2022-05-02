@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   CreditCardInput,
   SquarePaymentsForm,
@@ -26,13 +26,34 @@ import {
   submitPaymentAsync,
 } from "../../state-management/payment-slice";
 import { useAppDispatch, useAppSelector } from "../../state-management";
+import { incrementCurrentStep } from "../../state-management/workflow-slice";
+
+import { WorkflowButtons } from "../workflow-buttons";
+import {} from "../../utils/validation-utils";
 
 import styles from "./payment-form.module.scss";
 
 const PaymentForm = () => {
+  const [errors, setErrors] = useState({
+    paymentAmount: false,
+    paymentType: false,
+    processFailure: false,
+  });
   const dispatch = useAppDispatch();
   const paymentAmount = useAppSelector(selectAmount);
   const paymentType = useAppSelector(selectPaymentType);
+
+  const validateInputs = () => {
+    const isPaymentAmoundValid = paymentAmount;
+    const isPaymentTypeValid = paymentType;
+
+    setErrors({
+      paymentAmount: !isPaymentAmoundValid,
+      paymentType: !isPaymentTypeValid,
+    });
+
+    return isPaymentAmoundValid || isPaymentTypeValid;
+  };
 
   return (
     <div className={styles.paymentForm}>
@@ -50,6 +71,7 @@ const PaymentForm = () => {
           }}
           value={paymentAmount}
           onChange={(e) => dispatch(setAmount(e.target.value))}
+          error={errors.paymentAmount}
         />
         <FormControl>
           <InputLabel id="payment-type-label">Payment Type</InputLabel>
@@ -59,6 +81,7 @@ const PaymentForm = () => {
             label="Payment Type"
             value={paymentType}
             onChange={(e) => dispatch(setPaymentType(e.target.value))}
+            error={errors.paymentType}
           >
             <MenuItem disabled value="">
               <em>Choose payment type</em>
@@ -77,13 +100,26 @@ const PaymentForm = () => {
         applicationId={PAYMENT_CONFIG_APP_ID}
         locationId={PAYMENT_CONFIG_LOCATION_ID}
         cardTokenizeResponseReceived={async ({ token }) => {
-          if (token) {
-            dispatch(submitPaymentAsync(token));
+          if (token && validateInputs()) {
+            const result = await dispatch(submitPaymentAsync(token)).unwrap();
+            console.log(result);
+            if (result) {
+              dispatch(incrementCurrentStep());
+            } else {
+              setErrors({ ...errors, processFailure: true });
+            }
           }
         }}
       >
         <CreditCardInput />
       </SquarePaymentsForm>
+      {errors.processFailure && (
+        <p className={styles.paymentForm__processError}>
+          Something went wrong while processing your payment. Please try again
+          or contact the DRCG Properties for assistance.
+        </p>
+      )}
+      <WorkflowButtons />
     </div>
   );
 };

@@ -1,4 +1,5 @@
 import { validate } from "email-validator";
+import { setPostalCode } from "../state-management/customer-slice";
 
 export const validateNames = (firstName, lastName, companyName): boolean => {
   if (firstName && !lastName) {
@@ -33,3 +34,23 @@ export const validatePhoneNumber = (phoneNumber): boolean => {
 
 export const validateEmailAddress = (emailAddress): boolean =>
   emailAddress.trim() === "" || validate(emailAddress);
+
+export const validateStreetAddress = (addressLine1, addressLine2): boolean => {
+  if (!addressLine1) {
+    return false;
+  }
+
+  if (addressLine2 && !addressLine1) {
+    return false;
+  }
+
+  return true;
+};
+
+export const validateMainAddress = (city, state, postalCode): boolean => {
+  if (!city || !state || !postalCode) {
+    return false;
+  }
+
+  return true;
+};

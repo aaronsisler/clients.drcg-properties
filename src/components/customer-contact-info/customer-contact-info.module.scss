@@ -15,7 +15,7 @@
       @include font-type($MAIN_FONT, $MIDLARGE);
     }
     &__messageError {
-      color: red;
+      color: $ERROR_RED;
     }
     &__section {
       display: grid;

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import TextField from "@mui/material/TextField";
 import cn from "classnames";
 
+import { useAppDispatch, useAppSelector } from "../../state-management";
 import {
   selectFirstName,
   selectLastName,
@@ -14,20 +15,15 @@ import {
   setEmailAddress,
   setPhoneNumber,
 } from "../../state-management/customer-slice";
-import {
-  decrementCurrentStep,
-  incrementCurrentStep,
-} from "../../state-management/workflow-slice";
-import { WorkflowButtons } from "../workflow-buttons";
-
-import { useAppDispatch, useAppSelector } from "../../state-management";
-
-import styles from "./customer-contact-info.module.scss";
+import { incrementCurrentStep } from "../../state-management/workflow-slice";
 import {
   validateEmailAddress,
   validateNames,
   validatePhoneNumber,
 } from "../../utils/validation-utils";
+import { WorkflowButtons } from "../workflow-buttons";
+
+import styles from "./customer-contact-info.module.scss";
 
 const CustomerContactInfo = () => {
   const [errors, setErrors] = useState({
@@ -42,7 +38,7 @@ const CustomerContactInfo = () => {
   const emailAddress = useAppSelector(selectEmailAddress);
   const phoneNumber = useAppSelector(selectPhoneNumber);
 
-  const goToNextStep = async () => {
+  const goToNextStep = () => {
     const areNamesValid = validateNames(firstName, lastName, companyName);
     const isPhoneNumberValid = validatePhoneNumber(phoneNumber);
     const isEmailAddressValid = validateEmailAddress(emailAddress);
@@ -57,8 +53,6 @@ const CustomerContactInfo = () => {
       dispatch(incrementCurrentStep());
     }
   };
-
-  const goToPreviousStep = () => dispatch(decrementCurrentStep());
 
   return (
     <div className={styles.customerContactInfo}>
@@ -122,10 +116,7 @@ const CustomerContactInfo = () => {
           error={errors.phoneNumber}
         />
       </div>
-      <WorkflowButtons
-        goToNextStep={goToNextStep}
-        goToPreviousStep={goToPreviousStep}
-      />
+      <WorkflowButtons goToNextStep={goToNextStep} />
     </div>
   );
 };

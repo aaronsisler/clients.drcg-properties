@@ -3,6 +3,7 @@ import React from "react";
 import { CustomerAddressInfo } from "../../components/customer-address-info";
 import { CustomerContactInfo } from "../../components/customer-contact-info";
 import { PaymentForm } from "../../components/payment-form";
+import { PaymentSuccess } from "../../components/payment-success";
 
 import { useAppSelector } from "../../state-management";
 import {
@@ -25,6 +26,8 @@ const PaymentContainer = () => {
             return <CustomerAddressInfo />;
           case WorkflowStep.PAYMENT_CREDIT_CARD_INFO:
             return <PaymentForm />;
+          case WorkflowStep.PAYMENT_SUCCESS:
+            return <PaymentSuccess />;
         }
       })()}
     </div>

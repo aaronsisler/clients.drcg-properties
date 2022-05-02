@@ -9,6 +9,7 @@
     label,
     input {
       @include font-type($MAIN_FONT, $MEDIUM);
+
       min-height: 100%;
     }
     &__text {
@@ -21,12 +22,20 @@
     }
     &__select {
       @include font-type($MAIN_FONT, $MEDIUM);
+
       min-height: 100%;
     }
     &__section {
       display: grid;
       gap: $SMALL;
       grid-template-columns: 2fr 3fr;
+    }
+    &__processError {
+      @include font-type($MAIN_FONT, $MIDLARGE);
+
+      padding-block: $MEDIUM;
+      color: $ERROR_RED;
+      text-align: center;
     }
   }
 }

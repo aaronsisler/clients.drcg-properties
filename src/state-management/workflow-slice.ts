@@ -1,12 +1,12 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 
 import type { AppState } from "./store";
 
 export enum WorkflowStep {
   CUSTOMER_CONTACT_INFO,
   CUSTOMER_ADDRESS_INFO,
-  // PAYMENT_AMOUNT_INFO,
   PAYMENT_CREDIT_CARD_INFO,
+  PAYMENT_SUCCESS,
 }
 
 export interface WorkflowState {

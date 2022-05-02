@@ -26,14 +26,10 @@ export const submitPayment = async (paymentPayload: PaymentPayload) => {
 
 export const formatPaymentAmount = (amount: string): string => {
   const containsDecimal = amount.includes(".");
-  let returnValue;
+
   if (containsDecimal) {
-    returnValue = amount.replace(".", "");
-    console.log(returnValue);
-    return returnValue;
+    return amount.replace(".", "");
   }
 
-  returnValue = amount.concat("00");
-  console.log(returnValue);
-  return returnValue;
+  return amount.concat("00");
 };
