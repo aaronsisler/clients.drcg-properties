@@ -7,7 +7,8 @@
     display: grid;
     gap: $SMALL;
     label,
-    input {
+    input,
+    &__select {
       @include font-type($MAIN_FONT, $MEDIUM);
       min-height: 100%;
     }

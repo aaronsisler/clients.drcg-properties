@@ -1,6 +1,12 @@
 import React, { useState } from "react";
-import TextField from "@mui/material/TextField";
 import cn from "classnames";
+import FormControl from "@mui/material/FormControl";
+import InputLabel from "@mui/material/InputLabel";
+import TextField from "@mui/material/TextField";
+import MenuItem from "@mui/material/MenuItem";
+import Select from "@mui/material/Select";
+
+import { usStateAbbreviations } from "../../content/us-state-abbreviations";
 
 import { useAppDispatch, useAppSelector } from "../../state-management";
 import {
@@ -81,14 +87,23 @@ const CustomerAddressInfo = () => {
           onChange={(e) => dispatch(setCity(e.target.value))}
           error={errors.cityStatePostalCode}
         />
-        <TextField
-          label="State"
-          name="state"
-          inputProps={{ maxLength: 2 }}
-          value={state}
-          onChange={(e) => dispatch(setState(e.target.value))}
-          error={errors.cityStatePostalCode}
-        />
+        <FormControl>
+          <InputLabel id="state-label">State</InputLabel>
+          <Select
+            className={styles.customerAddressInfo__select}
+            labelId="state-label"
+            label="State"
+            value={state}
+            onChange={(e) => dispatch(setState(e.target.value))}
+            error={errors.cityStatePostalCode}
+          >
+            {usStateAbbreviations.map((value, index) => (
+              <MenuItem key={index} value={value}>
+                {value}
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
         <TextField
           label="Postal Code"
           name="postal-code"
