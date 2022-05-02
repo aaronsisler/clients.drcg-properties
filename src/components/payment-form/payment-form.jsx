@@ -17,7 +17,6 @@ import {
 } from "../../config";
 
 import { paymentTypes } from "../../content/payment-types";
-import { WorkflowStep } from "../../state-management/workflow-slice";
 
 import {
   selectAmount,

@@ -3,6 +3,11 @@
 
 //Small screens - MOBILE
 @media only screen {
+  .workflowButtons {
+    button {
+      font-size: $MEDIUM;
+    }
+  }
 }
 
 //Medium screens - TABLET
