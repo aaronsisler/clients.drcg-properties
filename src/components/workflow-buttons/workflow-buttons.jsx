@@ -2,22 +2,16 @@ import React from "react";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
 
-import { useAppDispatch, useAppSelector } from "../../state-management";
+import { useAppDispatch } from "../../state-management";
 import {
   decrementCurrentStep,
   incrementCurrentStep,
-  selectCurrentStep,
 } from "../../state-management/workflow-slice";
 
 import styles from "./workflow-buttons.module.scss";
 
-const WorkflowButtons = () => {
+const WorkflowButtons = ({ goToNextStep, goToPreviousStep }) => {
   const dispatch = useAppDispatch();
-  const currentStep = useAppSelector(selectCurrentStep);
-
-  const increment = () => {
-    dispatch(incrementCurrentStep());
-  };
 
   const decrement = () => {
     dispatch(decrementCurrentStep());
@@ -25,10 +19,10 @@ const WorkflowButtons = () => {
 
   return (
     <Stack spacing={4} direction="row" className={styles.workflowButtons}>
-      <Button variant="outlined" onClick={decrement}>
+      <Button variant="outlined" type="submit" onClick={goToPreviousStep}>
         Previous
       </Button>
-      <Button variant="outlined" onClick={increment}>
+      <Button variant="outlined" type="submit" onClick={goToNextStep}>
         Next
       </Button>
     </Stack>

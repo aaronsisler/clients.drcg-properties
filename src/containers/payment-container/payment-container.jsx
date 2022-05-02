@@ -2,7 +2,6 @@ import React from "react";
 
 import { CustomerAddressInfo } from "../../components/customer-address-info";
 import { CustomerContactInfo } from "../../components/customer-contact-info";
-import { WorkflowButtons } from "../../components/workflow-buttons";
 import { PaymentForm } from "../../components/payment-form";
 
 import { useAppSelector } from "../../state-management";
@@ -18,7 +17,6 @@ const PaymentContainer = () => {
 
   return (
     <div className={styles.paymentContainer}>
-      <WorkflowButtons />
       {(() => {
         switch (currentStep) {
           case WorkflowStep.CUSTOMER_CONTACT_INFO:
