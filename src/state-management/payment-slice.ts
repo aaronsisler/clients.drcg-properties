@@ -10,8 +10,8 @@ export interface PaymentState {
 }
 
 const initialState: PaymentState = {
-  amount: "123",
-  paymentType: "PAYMENT_TYPE_BUSINESS_TENANT_RENT",
+  amount: "",
+  paymentType: "",
   isProcessing: false,
 };
 

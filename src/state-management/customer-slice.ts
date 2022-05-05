@@ -15,15 +15,15 @@ export interface CustomerState {
 const initialState: CustomerState = {
   firstName: "",
   lastName: "",
-  companyName: "123",
+  companyName: "",
   emailAddress: "",
   phoneNumber: "",
   address: {
-    addressLine1: "123",
+    addressLine1: "",
     addressLine2: "",
-    city: "123",
-    state: "NC",
-    postalCode: "123",
+    city: "",
+    state: "",
+    postalCode: "",
   },
 };
 
