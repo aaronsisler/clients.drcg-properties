@@ -3,6 +3,14 @@
 
 //Small screens - MOBILE
 @media only screen {
+  .paymentSuccess {
+    text-align: center;
+    padding-block: $MEDIUM;
+
+    &__message {
+      @include font-type($MAIN_FONT, $MEDIUM);
+    }
+  }
 }
 
 //Medium screens - TABLET

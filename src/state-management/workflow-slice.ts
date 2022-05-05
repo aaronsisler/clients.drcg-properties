@@ -14,7 +14,8 @@ export interface WorkflowState {
 }
 
 const initialState: WorkflowState = {
-  currentStep: WorkflowStep.CUSTOMER_CONTACT_INFO,
+  currentStep: WorkflowStep.PAYMENT_CREDIT_CARD_INFO,
+  // currentStep: WorkflowStep.PAYMENT_CREDIT_CARD_INFO,
 };
 
 export const workflowSlice = createSlice({

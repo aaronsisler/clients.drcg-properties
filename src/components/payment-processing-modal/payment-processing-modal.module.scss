@@ -1,0 +1,46 @@
+@import "../../styles/variables";
+@import "../../styles/mixins";
+
+//Small screens - MOBILE
+@media only screen {
+  .paymentProcessingModal {
+    background-color: white;
+    margin: $LARGE $SMALL;
+    border-radius: 5px;
+    padding: $MEDIUM;
+    display: grid;
+    justify-content: center;
+    &__text {
+      @include font-type($MAIN_FONT, $LARGE);
+      margin-bottom: $MEDIUM;
+    }
+    &__spinner {
+      margin: $LARGE auto $LARGE;
+      height: 100px !important;
+      width: 100px !important;
+      circle {
+        color: $MAIN_COLOR !important;
+      }
+    }
+  }
+}
+
+//Medium screens - TABLET
+@media only screen and (min-width: $MEDIUM_SCREEN) {
+  .paymentProcessingModal {
+    width: 50vmin;
+    margin: $LARGE auto;
+  }
+}
+
+//Large screens - DESKTOP
+@media only screen and (min-width: $LARGE_SCREEN) {
+}
+
+//XLarge screens
+@media only screen and (min-width: $XLARGE_SCREEN) {
+}
+
+//XXLarge screens
+@media only screen and (min-width: $XXLARGE_SCREEN) {
+}

@@ -6,11 +6,13 @@ import { formatPaymentAmount, submitPayment } from "../utils/payment-utils";
 export interface PaymentState {
   amount: string;
   paymentType: string;
+  isProcessing: boolean;
 }
 
 const initialState: PaymentState = {
-  amount: "",
-  paymentType: "",
+  amount: "123",
+  paymentType: "PAYMENT_TYPE_BUSINESS_TENANT_RENT",
+  isProcessing: false,
 };
 
 export const submitPaymentAsync = createAsyncThunk(
@@ -44,15 +46,21 @@ export const paymentSlice = createSlice({
     setAmount: (state, action: PayloadAction<string>) => {
       state.amount = action.payload;
     },
+    setIsProcessing: (state, action: PayloadAction<boolean>) => {
+      state.isProcessing = action.payload;
+    },
     setPaymentType: (state, action: PayloadAction<string>) => {
       state.paymentType = action.payload;
     },
   },
 });
 
-export const { setAmount, setPaymentType } = paymentSlice.actions;
+export const { setAmount, setIsProcessing, setPaymentType } =
+  paymentSlice.actions;
 
 export const selectAmount = (state: AppState) => state.payment.amount;
 export const selectPaymentType = (state: AppState) => state.payment.paymentType;
+export const selectIsProcessing = (state: AppState) =>
+  state.payment.isProcessing;
 
 export default paymentSlice.reducer;

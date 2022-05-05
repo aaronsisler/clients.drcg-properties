@@ -20,14 +20,17 @@ import { paymentTypes } from "../../content/payment-types";
 
 import {
   selectAmount,
+  selectIsProcessing,
   selectPaymentType,
   setAmount,
+  setIsProcessing,
   setPaymentType,
   submitPaymentAsync,
 } from "../../state-management/payment-slice";
 import { useAppDispatch, useAppSelector } from "../../state-management";
 import { incrementCurrentStep } from "../../state-management/workflow-slice";
 
+import { PaymentProcessingModal } from "../payment-processing-modal";
 import { WorkflowButtons } from "../workflow-buttons";
 import {} from "../../utils/validation-utils";
 
@@ -40,6 +43,7 @@ const PaymentForm = () => {
     processFailure: false,
   });
   const dispatch = useAppDispatch();
+  const isProcessing = useAppSelector(selectIsProcessing);
   const paymentAmount = useAppSelector(selectAmount);
   const paymentType = useAppSelector(selectPaymentType);
 
@@ -57,6 +61,7 @@ const PaymentForm = () => {
 
   return (
     <div className={styles.paymentForm}>
+      <PaymentProcessingModal isOpen={isProcessing} />
       <h2 className={styles.paymentForm__title}>Payment</h2>
       <div className={styles.paymentForm__section}>
         <TextField
@@ -101,12 +106,14 @@ const PaymentForm = () => {
         locationId={PAYMENT_CONFIG_LOCATION_ID}
         cardTokenizeResponseReceived={async ({ token }) => {
           if (token && validateInputs()) {
+            await dispatch(setIsProcessing(true));
             const result = await dispatch(submitPaymentAsync(token)).unwrap();
             console.log(result);
             if (result) {
               dispatch(incrementCurrentStep());
             } else {
               setErrors({ ...errors, processFailure: true });
+              dispatch(setIsProcessing(false));
             }
           }
         }}
