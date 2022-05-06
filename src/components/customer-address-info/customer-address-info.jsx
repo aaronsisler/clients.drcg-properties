@@ -64,7 +64,6 @@ const CustomerAddressInfo = () => {
 
   return (
     <div className={styles.customerAddressInfo}>
-      <h2 className={styles.customerAddressInfo__title}>Address</h2>
       <TextField
         label="Address Line 1"
         name="address-1"

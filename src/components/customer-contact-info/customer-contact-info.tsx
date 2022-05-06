@@ -56,7 +56,6 @@ const CustomerContactInfo = () => {
 
   return (
     <div className={styles.customerContactInfo}>
-      <h2 className={styles.customerContactInfo__title}>Contact Information</h2>
       <p
         className={cn(
           styles.customerContactInfo__message,

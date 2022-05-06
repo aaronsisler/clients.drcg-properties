@@ -4,6 +4,8 @@ import { CustomerAddressInfo } from "../../components/customer-address-info";
 import { CustomerContactInfo } from "../../components/customer-contact-info";
 import { PaymentForm } from "../../components/payment-form";
 import { PaymentSuccess } from "../../components/payment-success";
+import { WorkflowStepper } from "../../components/workflow-stepper";
+
 import { CLIENT_NAME } from "../../config";
 import { useAppSelector } from "../../state-management";
 import {
@@ -21,7 +23,7 @@ const PaymentContainer = () => {
       <h1 className={styles.paymentContainer__title}>
         {CLIENT_NAME}&nbsp;Payment&nbsp;Portal
       </h1>
-      <hr />
+      <WorkflowStepper activeStep={currentStep} />
       {(() => {
         switch (currentStep) {
           case WorkflowStep.CUSTOMER_CONTACT_INFO:

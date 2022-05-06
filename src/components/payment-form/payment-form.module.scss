@@ -17,9 +17,6 @@
         @include font-type($MAIN_FONT, $MEDIUM);
       }
     }
-    &__title {
-      @include font-type($MAIN_FONT, $MIDLARGE);
-    }
     &__select {
       @include font-type($MAIN_FONT, $MEDIUM);
 

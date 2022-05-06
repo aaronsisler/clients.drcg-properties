@@ -11,8 +11,8 @@
       @include font-type($MAIN_FONT, $MEDIUM);
       min-height: 100%;
     }
-    &__title {
-      @include font-type($MAIN_FONT, $MIDLARGE);
+    &__message {
+      margin-bottom: $SMALL;
     }
     &__messageError {
       color: $ERROR_RED;

@@ -56,13 +56,25 @@ const PaymentForm = () => {
       paymentType: !isPaymentTypeValid,
     });
 
-    return isPaymentAmoundValid || isPaymentTypeValid;
+    return !!isPaymentAmoundValid && !!isPaymentTypeValid;
+  };
+
+  const handlePaymentSubmission = async (token) => {
+    if (token && validateInputs()) {
+      await dispatch(setIsProcessing(true));
+      const result = await dispatch(submitPaymentAsync(token)).unwrap();
+      if (result) {
+        dispatch(incrementCurrentStep());
+      } else {
+        setErrors({ ...errors, processFailure: true });
+        dispatch(setIsProcessing(false));
+      }
+    }
   };
 
   return (
     <div className={styles.paymentForm}>
       <PaymentProcessingModal isOpen={isProcessing} />
-      <h2 className={styles.paymentForm__title}>Payment</h2>
       <div className={styles.paymentForm__section}>
         <TextField
           className={styles.paymentForm__text}
@@ -101,22 +113,13 @@ const PaymentForm = () => {
       </div>
       <p>Mock Card Number</p>
       <p>5105 1051 0510 5100</p>
+      <p>Use any Exp Date, CVC, and Postal Code</p>
       <SquarePaymentsForm
         applicationId={PAYMENT_CONFIG_APP_ID}
         locationId={PAYMENT_CONFIG_LOCATION_ID}
-        cardTokenizeResponseReceived={async ({ token }) => {
-          if (token && validateInputs()) {
-            await dispatch(setIsProcessing(true));
-            const result = await dispatch(submitPaymentAsync(token)).unwrap();
-            console.log(result);
-            if (result) {
-              dispatch(incrementCurrentStep());
-            } else {
-              setErrors({ ...errors, processFailure: true });
-              dispatch(setIsProcessing(false));
-            }
-          }
-        }}
+        cardTokenizeResponseReceived={async ({ token }) =>
+          handlePaymentSubmission(token)
+        }
       >
         <CreditCardInput />
       </SquarePaymentsForm>
