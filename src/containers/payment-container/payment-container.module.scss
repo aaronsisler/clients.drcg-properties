@@ -4,14 +4,27 @@
 //Small screens - MOBILE
 @media only screen {
   .paymentContainer {
-    display: grid;
     padding: $MEDIUM;
-    gap: $MEDIUM;
+    &__title {
+      @include font-type($MAIN_FONT, $MIDLARGE, bold);
+      text-align: center;
+      margin-bottom: $MEDIUM;
+    }
+    hr {
+      max-width: $MAX_WIDTH_WIDGET;
+      margin: 0 auto $MEDIUM;
+    }
   }
 }
 
 //Medium screens - TABLET
 @media only screen and (min-width: $MEDIUM_SCREEN) {
+  .paymentContainer {
+    > div {
+      max-width: $MAX_WIDTH_WIDGET;
+      margin-inline: auto;
+    }
+  }
 }
 
 //Large screens - DESKTOP

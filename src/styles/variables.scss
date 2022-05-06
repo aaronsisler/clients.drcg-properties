@@ -1,7 +1,6 @@
 @use "sass:color";
 
 // Colors
-// $MAIN_COLOR: #690359;
 $MAIN_COLOR: rgb(30, 108, 197);
 $MAIN_COLOR_INVERTED: #60a06a;
 $MAIN_COLOR_DARKEN: color.adjust(
@@ -29,16 +28,13 @@ $PRETTY_BLUE: #1563ff;
 $PRETTY_PURPLE: #623ce4;
 
 // Feature Specific Colors
-// $FONT_GRAY: rgba(0, 0, 0, 0.7);
 $FONT_GRAY: rgb(70, 70, 70);
 $FONT_SEC_GRAY: rgb(44, 46, 47);
 $BORDER_GRAY: rgba(0, 0, 0, 0.5);
 $BOX_SHADOW_GRAY: rgba(189, 195, 199, 0.6);
 $BOX_SHADOW: 1px 2px $BOX_SHADOW_GRAY;
-// rgba(9, 30, 66, 0.08) 0px 0px 0px 1px; // trello
 $BOX_SHADOW_WIDGET: rgba($MAIN_COLOR_LIGHTEN, 0.25) 0px 4px 8px -2px,
   rgba($MAIN_COLOR_LIGHTEN, 0.08) 0px 0px 0px 1px; // trello with color
-// $BOX_SHADOW_WIDGET: 0 2px 4px $MAIN_COLOR_LIGHTEN;
 $BOX_SHADOW_WIDGET_DARKEN: 5px 0 3px rgba(0, 0, 0, 0.384),
   0 15px 12px rgba(0, 0, 0, 0.521);
 
@@ -52,7 +48,8 @@ $MIDLARGE: 2.4rem;
 $LARGE: 3.2rem;
 $XLARGE: 4.8rem;
 $XXLARGE: 7.6rem;
-$MAX_TEXT_WIDTH: 600px;
+$MAX_WIDTH_TEXT: 600px;
+$MAX_WIDTH_WIDGET: 750px;
 
 //Component Heights
 $NAV_MENU_HEIGHT: 65px;

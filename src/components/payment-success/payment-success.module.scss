@@ -5,7 +5,7 @@
 @media only screen {
   .paymentSuccess {
     text-align: center;
-    padding-block: $MEDIUM;
+    padding-block: $LARGE;
 
     &__message {
       @include font-type($MAIN_FONT, $MEDIUM);
@@ -15,6 +15,11 @@
 
 //Medium screens - TABLET
 @media only screen and (min-width: $MEDIUM_SCREEN) {
+  .paymentSuccess {
+    &__message {
+      @include font-type($MAIN_FONT, $MIDLARGE);
+    }
+  }
 }
 
 //Large screens - DESKTOP
