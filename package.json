@@ -6,7 +6,7 @@
     "prebuild": "rm -rf ./build && rm -rf ./dist",
     "build": "next build ./src && next export -o dist ./src",
     "dev": "next ./src",
-    "deploy:beta": "aws s3 sync ./dist s3://beta.drcgproperties.com --delete",
+    "deploy:beta": "aws s3 sync ./dist s3://beta.drcgproperties.com --delete && aws cloudfront create-invalidation --distribution-id E2HR1K28QZ11Z7 --paths \"/*\"",
     "deploy:prod": "aws s3 sync ./dist s3://drcgproperties.com --delete",
     "lint": "eslint \"./**/*.{js,jsx}\"",
     "gen:comp": "node ./node_modules/@ebsolutions/generate-react-templates --type=COMP",

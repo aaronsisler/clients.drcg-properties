@@ -8,12 +8,22 @@
     * {
       @include font-type($MAIN_FONT, $MEDIUM);
     }
+    span {
+    }
     svg {
-      width: $MIDLARGE;
-      height: $MIDLARGE;
+      width: $LARGE;
+      height: $LARGE;
+      text {
+        font-size: $SMALL !important;
+      }
     }
     circle {
       color: $MAIN_COLOR;
+    }
+    &__label {
+      span {
+        font-size: $MEDIUM !important;
+      }
     }
   }
 }

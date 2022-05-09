@@ -20,7 +20,11 @@ const WorkflowStepper = ({ activeStep = 1 }) => {
         };
         return (
           <Step key={label} {...stepProps}>
-            <StepLabel>{label}</StepLabel>
+            <StepLabel
+              classes={{ labelContainer: styles.workflowStepper__label }}
+            >
+              {label}
+            </StepLabel>
           </Step>
         );
       })}
