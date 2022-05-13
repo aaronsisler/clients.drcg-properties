@@ -4,8 +4,8 @@ const paymentTypes = [
     text: "Business Tenant Rent",
   },
   {
-    value: "PAYMENT_TYPE_APARTMENT_RENT",
-    text: "Apartment Rent",
+    value: "PAYMENT_TYPE_APARTMENT_HOUSE_RENT",
+    text: "Apartment/House Rent",
   },
   {
     value: "PAYMENT_TYPE_PARKING_FEE",
