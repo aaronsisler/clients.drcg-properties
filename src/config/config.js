@@ -24,10 +24,18 @@ export const LOGO_DIMENSIONS = {
 // Payment
 export const PAYMENT_CONFIG_TOKEN_CLIENT_NAME = "DRCG_PROPERTIES";
 
-// Sandbox
-export const PAYMENT_CONFIG_APP_ID = "sandbox-sq0idb-KoavOU3dlmNx8J4U2-FZHA";
-export const PAYMENT_CONFIG_LOCATION_ID = "LASSV5XT9RNA2";
-
-// Production
+// E&B Sandbox
 // export const PAYMENT_CONFIG_APP_ID = "sandbox-sq0idb-KoavOU3dlmNx8J4U2-FZHA";
 // export const PAYMENT_CONFIG_LOCATION_ID = "LASSV5XT9RNA2";
+
+// E&B Production
+// export const PAYMENT_CONFIG_APP_ID = "";
+// export const PAYMENT_CONFIG_LOCATION_ID = "";
+
+// DRCG Sandbox
+export const PAYMENT_CONFIG_APP_ID = "sandbox-sq0idb-zGovc3n2ZmEh3VzRXuuYeg";
+export const PAYMENT_CONFIG_LOCATION_ID = "L60J9Z83B35C5";
+
+// DRCG Sandbox
+// export const PAYMENT_CONFIG_APP_ID = "sq0idp-mOXb2ReOufLCnY7N9cE5pQ";
+// export const PAYMENT_CONFIG_LOCATION_ID = "LQNV5CF4PX4CN";

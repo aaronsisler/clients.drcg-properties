@@ -18,6 +18,7 @@ import {
 import { incrementCurrentStep } from "../../state-management/workflow-slice";
 import {
   validateEmailAddress,
+  validateMethodsToContactProvided,
   validateNames,
   validatePhoneNumber,
 } from "../../utils/validation-utils";
@@ -30,6 +31,7 @@ const CustomerContactInfo = () => {
     name: false,
     emailAddress: false,
     phoneNumber: false,
+    providedContactInfo: false,
   });
   const dispatch = useAppDispatch();
   const companyName = useAppSelector(selectCompanyName);
@@ -42,28 +44,52 @@ const CustomerContactInfo = () => {
     const areNamesValid = validateNames(firstName, lastName, companyName);
     const isPhoneNumberValid = validatePhoneNumber(phoneNumber);
     const isEmailAddressValid = validateEmailAddress(emailAddress);
+    const providedMeansToContact = validateMethodsToContactProvided(
+      emailAddress,
+      phoneNumber
+    );
 
     setErrors({
       name: !areNamesValid,
       emailAddress: !isEmailAddressValid,
       phoneNumber: !isPhoneNumberValid,
+      providedContactInfo: !providedMeansToContact,
     });
 
-    if (areNamesValid && isPhoneNumberValid && isEmailAddressValid) {
+    if (
+      areNamesValid &&
+      isPhoneNumberValid &&
+      isEmailAddressValid &&
+      providedMeansToContact
+    ) {
       dispatch(incrementCurrentStep());
     }
   };
 
   return (
     <div className={styles.customerContactInfo}>
-      <p
-        className={cn(
-          styles.customerContactInfo__message,
-          errors.name && styles.customerContactInfo__messageError
-        )}
-      >
-        Provide either company name or first/last name.
-      </p>
+      <div className={styles.customerContactInfo__messages}>
+        <p className={cn(styles.customerContactInfo__message)}>
+          Please provide the following:
+        </p>
+        <p
+          className={cn(
+            styles.customerContactInfo__message,
+            errors.name && styles.customerContactInfo__messageError
+          )}
+        >
+          Company name or first/last name
+        </p>
+        <p
+          className={cn(
+            styles.customerContactInfo__message,
+            errors.providedContactInfo &&
+              styles.customerContactInfo__messageError
+          )}
+        >
+          Email Address or Phone Number
+        </p>
+      </div>
       <div className={cn(styles.customerContactInfo__section)}>
         <TextField
           label="Company Name"
@@ -105,14 +131,14 @@ const CustomerContactInfo = () => {
           name="email"
           value={emailAddress}
           onChange={(e) => dispatch(setEmailAddress(e.target.value))}
-          error={errors.emailAddress}
+          error={errors.emailAddress || errors.providedContactInfo}
         />
         <TextField
           label="Phone Number"
           name="tel"
           value={phoneNumber}
           onChange={(e) => dispatch(setPhoneNumber(e.target.value))}
-          error={errors.phoneNumber}
+          error={errors.phoneNumber || errors.providedContactInfo}
         />
       </div>
       <WorkflowButtons goToNextStep={goToNextStep} />

@@ -11,8 +11,11 @@
       @include font-type($MAIN_FONT, $MEDIUM);
       min-height: 100%;
     }
-    &__message {
+    &__messages {
       margin-bottom: $SMALL;
+    }
+    &__message {
+      margin-bottom: $XXSMALL;
     }
     &__messageError {
       color: $ERROR_RED;
