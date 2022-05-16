@@ -23,6 +23,8 @@ export const LOGO_DIMENSIONS = {
 
 // Payment
 export const PAYMENT_CONFIG_TOKEN_CLIENT_NAME = "DRCG_PROPERTIES";
+export const PAYMENT_CONFIG_TRANSACTION_PERCENTAGE = 0.029;
+export const PAYMENT_CONFIG_TRANSACTION_FEE = 0.3;
 
 // E&B Sandbox
 // export const PAYMENT_CONFIG_APP_ID = "sandbox-sq0idb-KoavOU3dlmNx8J4U2-FZHA";

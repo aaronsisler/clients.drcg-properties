@@ -11,6 +11,10 @@
     &__select {
       @include font-type($MAIN_FONT, $MEDIUM);
       min-height: 100%;
+      div {
+        @include font-type($MAIN_FONT, $MEDIUM);
+        line-height: $LINE_HEIGHT;
+      }
     }
     &__section {
       display: grid;

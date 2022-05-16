@@ -19,10 +19,12 @@ import {
 import { paymentTypes } from "../../content/payment-types";
 
 import {
-  selectAmount,
+  selectCustomerInputAmount,
+  selectCalculatedPaymentAmount,
   selectIsProcessing,
   selectPaymentType,
-  setAmount,
+  setAmounts,
+  setCustomerInputAmount,
   setIsProcessing,
   setPaymentType,
   submitPaymentAsync,
@@ -44,19 +46,20 @@ const PaymentForm = () => {
   });
   const dispatch = useAppDispatch();
   const isProcessing = useAppSelector(selectIsProcessing);
-  const paymentAmount = useAppSelector(selectAmount);
+  const customerInputAmount = useAppSelector(selectCustomerInputAmount);
+  const calculatedPaymentAmount = useAppSelector(selectCalculatedPaymentAmount);
   const paymentType = useAppSelector(selectPaymentType);
 
   const validateInputs = () => {
-    const isPaymentAmoundValid = paymentAmount;
+    const isCustomerInputAmountValid = customerInputAmount;
     const isPaymentTypeValid = paymentType;
 
     setErrors({
-      paymentAmount: !isPaymentAmoundValid,
+      customerInputAmount: !isCustomerInputAmountValid,
       paymentType: !isPaymentTypeValid,
     });
 
-    return !!isPaymentAmoundValid && !!isPaymentTypeValid;
+    return !!isCustomerInputAmountValid && !!isPaymentTypeValid;
   };
 
   const handlePaymentSubmission = async (token) => {
@@ -86,9 +89,10 @@ const PaymentForm = () => {
           InputProps={{
             startAdornment: <InputAdornment position="start">$</InputAdornment>,
           }}
-          value={paymentAmount}
-          onChange={(e) => dispatch(setAmount(e.target.value))}
-          error={errors.paymentAmount}
+          value={customerInputAmount}
+          onChange={(e) => dispatch(setCustomerInputAmount(e.target.value))}
+          onBlur={(e) => dispatch(setAmounts(e.target.value))}
+          error={errors.customerInputAmount}
         />
         <FormControl>
           <InputLabel id="payment-type-label">Payment Type</InputLabel>
@@ -111,6 +115,9 @@ const PaymentForm = () => {
           </Select>
         </FormControl>
       </div>
+      <p>All payments subject transaction fee</p>
+      <p>2.9% + $0.30 </p>
+      <p>Total Amount To Be Charged: {calculatedPaymentAmount}</p>
       <p>Mock Card Number</p>
       <p>5105 1051 0510 5100</p>
       <p>Use any Exp Date, CVC, and Postal Code</p>
