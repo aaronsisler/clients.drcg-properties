@@ -31,7 +31,8 @@ jobs:
         run: npm run build
 
       - name: Deploy to Beta
-        run: npm run deploy:beta
+        run: aws s3 sync ./dist s3://beta.drcgproperties.com --delete && aws cloudfront create-invalidation --distribution-id E2HR1K28QZ11Z7 --paths \*
+        shell: bash
         env:
           AWS_DEFAULT_REGION: us-east-1
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
