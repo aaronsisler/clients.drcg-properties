@@ -118,9 +118,6 @@ const PaymentForm = () => {
       <p>All payments subject transaction fee</p>
       <p>2.9% + $0.30 </p>
       <p>Total Amount To Be Charged: {calculatedPaymentAmount}</p>
-      <p>Mock Card Number</p>
-      <p>5105 1051 0510 5100</p>
-      <p>Use any Exp Date, CVC, and Postal Code</p>
       <SquarePaymentsForm
         applicationId={PAYMENT_CONFIG_APP_ID}
         locationId={PAYMENT_CONFIG_LOCATION_ID}
